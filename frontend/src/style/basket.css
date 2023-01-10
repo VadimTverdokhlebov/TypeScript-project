@@ -1,0 +1,86 @@
+
+#basket {
+    position: sticky;
+    width: 280px;
+    border-radius: 10px;
+    background-color: var(--light-yelloy-color);
+}
+
+#basketHead {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: var(--dark-yelloy-color);
+    border-bottom: 2px solid darkgoldenrod;
+    box-shadow: 0 4px 6px darkgrey;
+}
+
+#basketIcon {
+    width: 48px;
+    height: 48px;
+}
+
+#basketName {
+    font-size: 36px;
+    color: var(--gray-text-color);
+    font-weight: bolder;
+}
+
+#basketTitle {
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid darkgoldenrod;
+    background-color: var(--light-yelloy-color);
+}
+
+.basketProduct {
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid darkgoldenrod;
+    background-color: var(--light-yelloy-color);
+}
+
+#basketTotal {
+    margin-top: 10px;
+    padding: 0px;
+}
+
+.basketBottonOrder {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 200px;
+    height: 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bolder;
+    color: white;
+    box-shadow: 0 2px 4px darkgoldenrod;
+    background-color: darkgray;
+}
+
+#basketOrder {
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: center;
+    background-color: var(--light-yelloy-color);
+}
+
+.basketBottonOrder:hover {
+    color: white;
+    background-color: var(--dark-yelloy-color);
+}
+
+.buttonDelete {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+}

@@ -1,0 +1,129 @@
+#content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product {
+    margin-top: 50px;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    width: 300px;
+    height: 600px;
+}
+
+.foodPicture {
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 10px solid var(--light-yelloy-color);
+    background-color: white;
+}
+
+.foodLogo {
+    width: 300px;
+}
+
+.foodName {
+    padding-top: 20px;
+    font-size: 24px;
+    height: 80px;
+    text-align: center;
+}
+
+.foodPrice {
+    font-size: 20px;
+    text-align: center;
+    color: rgb(151, 25, 25);
+}
+
+.foodCount {
+    margin: 0 auto;
+    font-size: 16px;
+    text-align: center;
+}
+
+.foodLine {
+    width: 300px;
+    height: 60px;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+.foodStructure {
+    font-size: 14px;
+    text-decoration: underline;
+    text-align: center;
+    color: var(--light-blue-color);
+}
+
+.formAddBasket {
+    text-align: center;
+}
+
+.foodCounter {
+    margin: 0 auto;
+    padding: 10px;
+    width: 220px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+}
+
+.quantity {
+    all: unset;
+    -moz-appearance: textfield;
+    width: 3em;
+    text-align: center;
+}
+
+.quantity::-webkit-inner-spin-button {
+    display: none;
+}
+
+.quantityProductInBasket {
+    all: unset;
+    -moz-appearance: textfield;
+    width: 3em;
+    text-align: center;
+}
+
+.quantityProductInBasket::-webkit-inner-spin-button {
+    display: none;
+}
+
+.buttonMinus {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.buttonPlus {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.buttonBuy {
+    width: 200px;
+    height: 30px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    font-weight: bolder;
+    color: var(--gray-text-color);
+    box-shadow: 0 2px 4px darkgoldenrod;
+    background-color: var(--light-yelloy-color);
+}
+
+.buttonBuy:hover {
+    color: white;
+    background-color: var(--dark-yelloy-color);
+}

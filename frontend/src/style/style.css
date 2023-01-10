@@ -1,0 +1,32 @@
+html {
+
+    font-family: sans-serif;
+    background-color: lightgray;
+}
+
+button {
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+:root {
+    --dark-yelloy-color: rgb(221, 186, 27);
+    --light-yelloy-color: rgb(243, 240, 36);
+    --gray-text-color: rgb(65, 62, 62);
+    --light-blue-color: rgb(30, 109, 255);
+}
+
+#title {
+    font-size: 46px;
+    font-weight: normal;
+    text-align: center;
+}
+
+.page {
+    padding: 15px;
+    display: flex;
+}

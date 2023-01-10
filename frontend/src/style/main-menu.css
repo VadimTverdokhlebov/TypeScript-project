@@ -1,0 +1,30 @@
+.mainMenu {
+    margin: 50px 0 50px 0;
+    padding: 0;
+    width: 280px;
+    border-radius: 10px;
+    list-style: none;
+    background-color: white;
+    box-shadow: 0 4px 6px darkgrey;
+}
+
+.categoryMenu {
+    padding: 20px;
+    font-size: 24px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+    transition: .2s;
+}
+
+.categoryMenu:hover {
+    color: white;
+    background-color: var(--light-yelloy-color);
+}
+
+.activeElementMenu {
+    color: white;
+    background-color: var(--light-yelloy-color);
+}

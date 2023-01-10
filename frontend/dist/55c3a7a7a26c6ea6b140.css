@@ -1,0 +1,402 @@
+html {
+    /*min-height: 100%;
+    background-image: url(i/fon-serii-metallik-78.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;*/
+    font-family: sans-serif;
+    background-color: lightgray;
+}
+
+button {
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+:root {
+    --dark-yelloy-color: rgb(221, 186, 27);
+    --light-yelloy-color: rgb(243, 240, 36);
+    --gray-text-color: rgb(65, 62, 62);
+    --light-blue-color: rgb(30, 109, 255);
+}
+
+#title {
+    font-size: 46px;
+    font-weight: normal;
+    text-align: center;
+}
+
+.page {
+    padding: 15px;
+    display: flex;
+}
+
+/*Стили меню*/
+
+.mainMenu {
+    margin: 50px 0 50px 0;
+    padding: 0;
+    width: 280px;
+    border-radius: 10px;
+    list-style: none;
+    background-color: white;
+    box-shadow: 0 4px 6px darkgrey;
+}
+
+.categoryMenu {
+    padding: 20px;
+    font-size: 24px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+    transition: .2s;
+}
+
+.categoryMenu:hover {
+    color: white;
+    background-color: var(--light-yelloy-color);
+}
+
+/*Стили корзины*/
+
+#basket {
+    position: sticky;
+    width: 280px;
+    border-radius: 10px;
+    background-color: var(--light-yelloy-color);
+}
+
+#basketHead {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: var(--dark-yelloy-color);
+    border-bottom: 2px solid darkgoldenrod;
+    box-shadow: 0 4px 6px darkgrey;
+}
+
+#basketIcon {
+    width: 48px;
+    height: 48px;
+}
+
+#basketName {
+    font-size: 36px;
+    color: var(--gray-text-color);
+    font-weight: bolder;
+}
+
+#basketTitle {
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid darkgoldenrod;
+    background-color: var(--light-yelloy-color);
+}
+
+.basketProduct {
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid darkgoldenrod;
+    background-color: var(--light-yelloy-color);
+}
+
+#basketTotal {
+    margin-top: 10px;
+    padding: 0px;
+}
+
+.basketBottonOrder {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 200px;
+    height: 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bolder;
+    color: white;
+    box-shadow: 0 2px 4px darkgoldenrod;
+    background-color: darkgray;
+}
+
+#basketOrder {
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: center;
+    background-color: var(--light-yelloy-color);
+}
+
+.basketBottonOrder:hover {
+    color: white;
+    background-color: var(--dark-yelloy-color);
+}
+
+.buttonDelete {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+/*Стили блока с товаром*/
+
+#content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product {
+    margin-top: 50px;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    width: 300px;
+    height: 600px;
+}
+
+.foodPicture {
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 10px solid var(--light-yelloy-color);
+    background-color: white;
+}
+
+.foodLogo {
+    width: 300px;
+}
+
+.foodName {
+    padding-top: 20px;
+    font-size: 24px;
+    height: 80px;
+    text-align: center;
+}
+
+.foodPrice {
+    font-size: 20px;
+    text-align: center;
+    color: rgb(151, 25, 25);
+}
+
+.foodCount {
+    margin: 0 auto;
+    font-size: 16px;
+    text-align: center;
+}
+
+.foodLine {
+    width: 300px;
+    height: 60px;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+.foodStructure {
+    font-size: 14px;
+    text-decoration: underline;
+    text-align: center;
+    color: var(--light-blue-color);
+}
+
+.formAddBasket {
+    text-align: center;
+}
+
+.foodCounter {
+    margin: 0 auto;
+    padding: 10px;
+    width: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+}
+
+.quantity {
+    all: unset;
+    -moz-appearance: textfield;
+    width: 3em;
+    text-align: center;
+}
+
+.quantity::-webkit-inner-spin-button {
+    display: none;
+}
+
+.quantityProductInBasket {
+    all: unset;
+    -moz-appearance: textfield;
+    width: 3em;
+    text-align: center;
+}
+
+.quantityProductInBasket::-webkit-inner-spin-button {
+    display: none;
+}
+
+.buttonMinus {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.buttonPlus {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.buttonBuy {
+    width: 200px;
+    height: 30px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    font-weight: bolder;
+    color: var(--gray-text-color);
+    box-shadow: 0 2px 4px darkgoldenrod;
+    background-color: var(--light-yelloy-color);
+}
+
+.buttonBuy:hover {
+    color: white;
+    background-color: var(--dark-yelloy-color);
+}
+
+/* стили модального окна*/
+
+.modalContainer {
+    display: block;
+    width: 1000px;
+    max-width: 100%;
+    height: 500px;
+    max-height: 100%;
+    position: fixed;
+    z-index: 100;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.modalContent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 20px 50px 20px 20px;
+    overflow-x: hidden;
+    background-color: lightgray;
+}
+
+#menuModal {
+    display: flex;
+    justify-content: space-between;
+    padding-inline-start: 0;
+    width: 1010px;
+    height: 30px;
+    box-shadow: 2px 4px 6px rgb(141, 137, 137);
+    font-size: 24px;
+    background-color: white;
+}
+
+#menuModal li {
+    width: 100%;
+    height: 30px;
+    display:inline-block;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+#productContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.modalProductCard {
+    margin: 10px;
+    width: 300px;
+    height: 300px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.listComponentSandwiches {
+    padding: 5px;
+}
+
+#customSandwichContainer {
+    margin: 20px; 
+    border-bottom: 1px solid black;
+}
+#yourSandwichIsDone {
+    font-size: 24px;
+    border-bottom: 1px solid black;
+}
+.customSandwichPreview {
+    margin: 20px;
+    text-align: center;
+}
+#orderCustomSandwich {
+    margin: 20px;
+    text-align: center;
+
+}
+.doneProductContainer {
+    display: grid;
+}
+.customSandwichMenu {
+    display: flex;
+}
+
+#backButton {
+    width: 60px;
+    height: 30px;
+    border-radius: 4px;
+    float: left;
+    color: white;
+    background-color: rgb(235, 74, 52);
+}
+
+#forwardButton{
+    width: 60px;
+    height: 30px;
+
+    float: right;
+    border-radius: 4px;
+    color: white;
+    background-color: rgb(235, 74, 52);
+}
