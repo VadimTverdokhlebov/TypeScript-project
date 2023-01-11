@@ -1,14 +1,10 @@
-import Order from '../models/order';
+import Order, { IOrder } from '../models/order';
 
-export async function createOrder(dataOrder: any) {
-  const order = new Order(dataOrder);
-
-  await order.save();
+export function createOrder(dataOrder: IOrder) {
+  return Order.create(dataOrder);
 }
 
-export async function getUserOrders(userId: string) {
-  const orders = await Order.find({ user: userId })
-    .populate('products.product').populate('products.additives.additive');
-
-  return orders;
+export function getUserOrders(userId: string) {
+  return Order.find({ user: userId })
+    .populate('products.product').populate('products.additives.additive');;
 }

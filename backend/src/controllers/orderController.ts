@@ -1,19 +1,23 @@
 import mongoose from 'mongoose';
-import { getProducts, getAdditives } from '../db/requests/productRequests';
+import { getOrderProducts, getOrderAdditives } from '../db/requests/productRequests';
 import { createOrder } from '../db/requests/orderRequests';
-import Order from '../db/models/order';
+import Order, { IOrder } from '../db/models/order';
 import { IProduct } from '../db/models/products';
 import { IAdditive } from '../db/models/additive';
-import { IOrder } from '../db/models/order'
 
 export default class OrderController {
   static async addOrder(req: any, res: any) {
     try {
-      const userId = req.user.id;
+      const userId = String(req.user.id);
       const { products } = req.body;
-      const menu = await getProducts();
-      const allAdditives = await getAdditives();
       let indexProductOrder = 0;
+
+      const [productsId, additivesId] = getIdDataOrder(products);
+
+      const [productsOrder, additivesOrder] = await Promise.all([
+        getOrderProducts(productsId),
+        getOrderAdditives(additivesId)]);
+
 
       const order: IOrder = {
         user: new mongoose.Types.ObjectId(userId),
@@ -23,7 +27,7 @@ export default class OrderController {
       };
 
       for (const product of products) {
-        const currentProduct = menu.find((elem) => elem.id === product.id) as IProduct;
+        const currentProduct = productsOrder.find((elem) => elem.id === product.id) as IProduct;
 
         order.sumOrder += Number(product.amount) * Number(currentProduct.price);
 
@@ -37,7 +41,7 @@ export default class OrderController {
         order.products.push(insertProduct);
 
         for (const additiveId of product.additives) {
-          const currentAdditive = allAdditives.find((elem) => elem.id === additiveId) as IAdditive;
+          const currentAdditive = additivesOrder.find((elem) => elem.id === additiveId) as IAdditive;
 
           order.sumOrder += Number(product.amount) * Number(currentAdditive.price);
           order.products[indexProductOrder].sum += Number(currentAdditive.price);
@@ -50,12 +54,26 @@ export default class OrderController {
         indexProductOrder += 1;
       }
 
-      await createOrder(order);
+      const orderCreated = await createOrder(order);
 
-      return res.json({ message: 'The order added', order });
+      return res.json({ order: orderCreated });
     } catch (e) {
       console.log(e);
       return res.json({ message: 'The order not added' });
+    }
+
+    function getIdDataOrder(products: any) {
+      const productsId: string[] = [];
+      const additivesId: string[] = [];
+
+      for (const product of products) {
+        productsId.push(product.id);
+        for (const additiveId of product.additives) {
+          additivesId.push(additiveId);
+        };
+      }
+
+      return [productsId, additivesId]
     }
   }
 

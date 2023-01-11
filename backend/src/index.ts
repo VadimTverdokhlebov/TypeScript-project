@@ -1,15 +1,17 @@
 import express from 'express';
 import cors from 'cors';
-import productsRouter from './routes/productsRouter';
 import connectToDataBase from './db/connectToDataBase';
-import searchRouter from './routes/searchRouter';
-import orderRouter from './routes/orderRouter';
-import authRouter from './routes/authRouter';
 import config from './config';
+import indexRouter from './routes/indexRouter';
+
+// logger winston
+// errors middleware
+// (error, req, res, next)
 
 async function startServer() {
+
   const corsOptions = {
-    origin: 'http://localhost:8080',
+    origin: config.origin,
     credentials: true,
     optionSuccessStatus: 200,
   };
@@ -19,13 +21,9 @@ async function startServer() {
   app.use(cors(corsOptions));
   app.use(express.json());
   app.use(express.static('public'));
+  app.use('/', indexRouter());
 
-  app.use('/api', orderRouter);
-  app.use('/api', productsRouter);
-  app.use('/api', searchRouter);
-  app.use('/api/auth', authRouter);
-
-  const PORT: string | undefined = config.port;
+  const PORT = config.port;
 
   app.listen(PORT, () => {
     console.log(`Server listens http://localhost:${PORT}`);

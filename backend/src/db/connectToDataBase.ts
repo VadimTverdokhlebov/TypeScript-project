@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import config from '../config';
 
 export default async function connectToDataBase() {
-  const db: string = config.databaseURL;
+  const db = config.databaseURL;
 
   const optionsDataBase = {
     authSource: 'admin',

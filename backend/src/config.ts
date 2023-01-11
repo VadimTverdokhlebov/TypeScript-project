@@ -3,14 +3,15 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 interface IConfig {
-  port: string,
-  host: string,
-  databaseURL: string,
-  databaseUser: string,
-  databasePassword: string,
+  port: string;
+  host: string;
+  databaseURL: string;
+  databaseUser: string;
+  databasePassword: string;
   user: {
-    secretKey: string,
+    secretKey: string;
   },
+  origin: string;
 }
 
 const config: IConfig = {
@@ -23,6 +24,7 @@ const config: IConfig = {
   user: {
     secretKey: process.env.SECRET_KEY!,
   },
+  origin: process.env.ORIGIN!,
 };
 
 export default config;

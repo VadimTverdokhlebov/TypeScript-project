@@ -9,6 +9,17 @@ export function getAdditives() {
   return Additive.find().all('additives', []);
 }
 
-export function getFoundProducts(regexp: RegExp, category: string) {
+export function getOrderAdditives(additivesId: string[]) {
+  return Additive.find({ '_id': { $in: additivesId } });
+}
+
+export function getOrderProducts(productsId: string[]) {
+  return Product.find({ '_id': { $in: productsId } });
+}
+
+export function getSearchProducts(searchValue: string, category: string) {
+
+  const regexp = new RegExp(searchValue, 'i');
+
   return Product.find({ name: regexp, category });
 }

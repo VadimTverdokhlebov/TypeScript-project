@@ -1,9 +1,10 @@
+import { NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import config from '../config';
 
-export default function authJwtMiddleware(req: any, res: any, next: any) {
+export default function authJwtMiddleware(req: any, res: any, next: NextFunction) {
   if (req.method === 'OPTIONS') {
-    next();
+    return next();
   }
 
   try {

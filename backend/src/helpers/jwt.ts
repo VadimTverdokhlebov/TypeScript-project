@@ -1,6 +1,10 @@
 import jwt from 'jsonwebtoken';
 import config from '../config';
 
+interface IDecodetData {
+  id: string;
+}
+
 export function generateAccessToken(id: string, email: string) {
   const { secretKey } = config.user;
 
@@ -13,10 +17,6 @@ export function generateAccessToken(id: string, email: string) {
 }
 
 export function getUserId(token: string) {
-  interface IDecodetData {
-    id: string;
-  }
-
   const decodetData = <IDecodetData>jwt.verify(token, config.user.secretKey);
 
   return decodetData.id;

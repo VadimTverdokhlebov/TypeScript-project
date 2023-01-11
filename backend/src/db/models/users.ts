@@ -2,8 +2,7 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-export interface IUser {
-  _id: string;
+export interface IUser extends mongoose.Document {
   email: string;
   password: string;
 }

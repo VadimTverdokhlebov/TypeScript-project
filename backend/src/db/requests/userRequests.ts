@@ -4,8 +4,6 @@ export function getUser(email: string) {
   return User.findOne({ email });
 }
 
-export async function createNewUser(dataUser: any) {
-  const user = new User(dataUser);
-
-  await user.save();
+export function createNewUser(dataUser: any) {
+  return User.create(dataUser);
 }

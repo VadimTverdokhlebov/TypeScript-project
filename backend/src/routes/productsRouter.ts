@@ -1,8 +1,9 @@
 import { Router } from 'express';
-import getProduct from '../controllers/productsController';
+import { getProduct, getResultSearch } from '../controllers/productsController';
 
 const router = Router();
 
-router.get('/products', getProduct);
+router.get('/api/products', getProduct);
+router.get('/api/search/products', getResultSearch);
 
 export default router;

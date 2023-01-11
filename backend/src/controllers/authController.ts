@@ -1,69 +1,72 @@
-import { validationResult } from 'express-validator';
 import bcrypt from 'bcrypt';
-import { generateAccessToken } from '../JWT/userTokens';
+import { generateAccessToken } from '../helpers/jwt';
 import { getUser, createNewUser } from '../db/requests/userRequests';
-import { IUser } from '../db/models/users';
+import { Request, Response } from 'express';
+import { validationResult } from 'express-validator';
+
+enum HTTStatus {
+  BAD_REQUEST = 400
+}
 
 export default class AuthController {
-  static async registration(req: any, res: any) {
+  static async registration(req: Request, res: Response) {
     try {
       const errors = validationResult(req);
 
       if (!errors.isEmpty()) {
-        return res.status(400).json({ message: 'Registration error', errors });
+        return res.status(HTTStatus.BAD_REQUEST).json({ message: 'Registration error!', errors });
       }
 
       const { email, password } = req.body;
 
       if (await getUser(email)) {
-        return res.status(400).json({ message: 'The user already exist' });
+        return res.status(HTTStatus.BAD_REQUEST).json({ message: 'The user already exist' });
       }
-
       const hashPassword = await bcrypt.hash(password, 3);
       const dataUser = { email, password: hashPassword };
 
-      await createNewUser(dataUser);
-      
-      const user =  await getUser(email) as IUser;
+      const user = await createNewUser(dataUser);
       const token = generateAccessToken(user._id, user.email);
 
-      return res.json({ message: 'The user has been successfully registered', token });
+      return res.json({ token });
     } catch (e) {
       console.log(e);
-      return res.status(400).json({ message: 'Registration error' });
+      return res.status(HTTStatus.BAD_REQUEST).json({ message: 'Registration error!!' });
     }
   }
 
-  static async login(req: any, res: any) {
+  static async login(req: Request, res: Response) {
     try {
       const { email, password } = req.body;
 
-      const user = await getUser(email) as IUser;
+      const user = await getUser(email);
 
       if (!user) {
-        return res.status(400).json({ message: 'The user not found' });
+        // return next(new ResponseError())
+        return res.status(HTTStatus.BAD_REQUEST).json({ message: 'The user not found' });
       }
 
-      const validPassword = bcrypt.compareSync(password, user.password);
+      const validPassword = await bcrypt.compare(password, user.password);
 
       if (!validPassword) {
-        return res.status(400).json({ message: 'Insert incorrect password' });
+        return res.status(HTTStatus.BAD_REQUEST).json({ message: 'Insert incorrect password' });
       }
 
       const token = generateAccessToken(user._id, user.email);
       return res.json({ token });
     } catch (e) {
       console.log(e);
-      return res.status(400).json({ message: 'Login error' });
+      return res.status(HTTStatus.BAD_REQUEST).json({ message: 'Login error' });
     }
   }
 
   static async checkLogin(req: any, res: any) {
     try {
-      res.json({ message: 'User authorizatoin' });
       console.log(req.user);
+      return res.json({ message: 'User authorizatoin' });
     } catch (e) {
       console.log(e);
+      return res.status(400).json({ message: 'Login error' });
     }
   }
 }
