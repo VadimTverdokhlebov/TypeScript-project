@@ -1,4 +1,4 @@
-import Product from '../models/products';
+import Product from '../models/product';
 import Additive from '../models/additive';
 
 export function getProducts() {
@@ -9,11 +9,11 @@ export function getAdditives() {
   return Additive.find().all('additives', []);
 }
 
-export function getOrderAdditives(additivesId: string[]) {
+export function getSelectedAdditives(additivesId: string[]) {
   return Additive.find({ '_id': { $in: additivesId } });
 }
 
-export function getOrderProducts(productsId: string[]) {
+export function getSelectedProducts(productsId: string[]) {
   return Product.find({ '_id': { $in: productsId } });
 }
 

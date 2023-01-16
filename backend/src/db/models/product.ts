@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-export interface IProduct {
+export interface IProduct extends mongoose.Document {
   name: string;
   image: string;
   description: string;

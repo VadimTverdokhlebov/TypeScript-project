@@ -1,7 +1,8 @@
 import { getAdditives, getProducts, getSearchProducts } from '../db/requests/productRequests';
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
+import ApiError from '../excaptions/apiError';
 
-interface IRequest extends Request {
+interface ICustomRequest extends Request {
   query: {
     searchValue: string;
     category: string;
@@ -16,14 +17,17 @@ export async function getProduct(req: Request, res: Response) {
   return res.json(products);
 }
 
-export async function getResultSearch(req: IRequest, res: Response) {
+export async function getResultSearch(req: Request, res: Response, next: NextFunction) {
+  try {
+    const { searchValue, category } = (req as ICustomRequest).query;
+    const foundProducts = await getSearchProducts(searchValue, category);
 
-  const { searchValue, category } = req.query;
-  const foundProducts = await getSearchProducts(searchValue, category);
+    if (foundProducts.length === 0) {
+      throw ApiError.badRequest('The product not found');
+    }
 
-  if (foundProducts.length === 0) {
-    return res.json({ message: 'The product not found' });
+    return res.json(foundProducts);
+  } catch (e) {
+    return next(e)
   }
-
-  return res.json(foundProducts);
 }

@@ -3,10 +3,7 @@ import cors from 'cors';
 import connectToDataBase from './db/connectToDataBase';
 import config from './config';
 import indexRouter from './routes/indexRouter';
-
-// logger winston
-// errors middleware
-// (error, req, res, next)
+import errorsMiddleware from './middleware/errorsMiddleware';
 
 async function startServer() {
 
@@ -21,7 +18,8 @@ async function startServer() {
   app.use(cors(corsOptions));
   app.use(express.json());
   app.use(express.static('public'));
-  app.use('/', indexRouter());
+  app.use('/api', indexRouter());
+  app.use(errorsMiddleware);
 
   const PORT = config.port;
 

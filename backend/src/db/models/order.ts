@@ -3,11 +3,11 @@ import paginate from 'mongoose-paginate-v2';
 
 const { Schema } = mongoose;
 
-export interface IOrderAdditive {
+export interface IOrderAdditive  {
   additive: mongoose.Types.ObjectId;
 } 
 
-export interface IOrderProduct {
+export interface IOrderProduct  {
   product: mongoose.Types.ObjectId;
   sum: number;
   quantity: number;

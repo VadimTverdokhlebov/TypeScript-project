@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-export interface IAdditive {
+export interface IAdditive extends mongoose.Document{
   name: string;
   image: string;
   description: string;

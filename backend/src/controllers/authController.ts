@@ -1,27 +1,28 @@
 import bcrypt from 'bcrypt';
 import { generateAccessToken } from '../helpers/jwt';
 import { getUser, createNewUser } from '../db/requests/userRequests';
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { validationResult } from 'express-validator';
-
-enum HTTStatus {
-  BAD_REQUEST = 400
-}
+import ApiError from '../excaptions/apiError';
+import ApiValidationError from '../excaptions/apiValidationError';
 
 export default class AuthController {
-  static async registration(req: Request, res: Response) {
+  static async registration(req: Request, res: Response, next: NextFunction) {
     try {
+
       const errors = validationResult(req);
 
       if (!errors.isEmpty()) {
-        return res.status(HTTStatus.BAD_REQUEST).json({ message: 'Registration error!', errors });
+        throw ApiValidationError.badValidation('Validation error', errors)
       }
 
       const { email, password } = req.body;
+      const checkUser = await getUser(email);
 
-      if (await getUser(email)) {
-        return res.status(HTTStatus.BAD_REQUEST).json({ message: 'The user already exist' });
+      if (checkUser) {
+        throw ApiError.badRequest('The user already exist!');
       }
+
       const hashPassword = await bcrypt.hash(password, 3);
       const dataUser = { email, password: hashPassword };
 
@@ -30,43 +31,30 @@ export default class AuthController {
 
       return res.json({ token });
     } catch (e) {
-      console.log(e);
-      return res.status(HTTStatus.BAD_REQUEST).json({ message: 'Registration error!!' });
+      return next(e);
     }
   }
 
-  static async login(req: Request, res: Response) {
+  static async login(req: Request, res: Response, next: NextFunction) {
     try {
       const { email, password } = req.body;
 
       const user = await getUser(email);
 
       if (!user) {
-        // return next(new ResponseError())
-        return res.status(HTTStatus.BAD_REQUEST).json({ message: 'The user not found' });
+        throw ApiError.badRequest('The user not found!');
       }
 
       const validPassword = await bcrypt.compare(password, user.password);
 
       if (!validPassword) {
-        return res.status(HTTStatus.BAD_REQUEST).json({ message: 'Insert incorrect password' });
+        throw ApiError.badRequest('Insert incorrect password');
       }
 
       const token = generateAccessToken(user._id, user.email);
       return res.json({ token });
     } catch (e) {
-      console.log(e);
-      return res.status(HTTStatus.BAD_REQUEST).json({ message: 'Login error' });
-    }
-  }
-
-  static async checkLogin(req: any, res: any) {
-    try {
-      console.log(req.user);
-      return res.json({ message: 'User authorizatoin' });
-    } catch (e) {
-      console.log(e);
-      return res.status(400).json({ message: 'Login error' });
+      return next(e);
     }
   }
 }

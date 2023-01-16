@@ -4,7 +4,7 @@ import authJwtMiddleware from '../middleware/authJwtMiddleware';
 
 const router = Router();
 
-router.post('/api/orders', authJwtMiddleware, OrderController.addOrder);
-router.get('/api/orders', authJwtMiddleware, OrderController.getOrders);
+router.post('/orders', authJwtMiddleware, OrderController.addOrder);
+router.get('/orders', authJwtMiddleware, OrderController.getOrders);
 
 export default router;
