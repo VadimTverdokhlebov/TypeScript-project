@@ -1,18 +1,19 @@
 export default class ApiError extends Error {
-    status;
-    errors;
+  status;
 
-    constructor(status: number, message: string, errors = []) {
-        super(message);
-        this.status = status;
-        this.errors = errors;
-    }
+  errors;
 
-    static unauthorization() {
-        return new ApiError(401, 'User is not login');
-    }
+  constructor(status: number, message: string, errors = []) {
+    super(message);
+    this.status = status;
+    this.errors = errors;
+  }
 
-    static badRequest(message: string, errors = []) {
-        return new ApiError(400, message, errors);
-    }
+  static unauthorization() {
+    return new ApiError(401, 'User is not login');
+  }
+
+  static badRequest(message: string, errors = []) {
+    return new ApiError(400, message, errors);
+  }
 }

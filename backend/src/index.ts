@@ -6,7 +6,6 @@ import indexRouter from './routes/indexRouter';
 import errorsMiddleware from './middleware/errorsMiddleware';
 
 async function startServer() {
-
   const corsOptions = {
     origin: config.origin,
     credentials: true,

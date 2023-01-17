@@ -1,19 +1,18 @@
 import bcrypt from 'bcrypt';
-import { generateAccessToken } from '../helpers/jwt';
-import { getUser, createNewUser } from '../db/requests/userRequests';
 import { NextFunction, Request, Response } from 'express';
 import { validationResult } from 'express-validator';
+import { generateAccessToken } from '../helpers/jwt';
+import { getUser, createNewUser } from '../db/requests/userRequests';
 import ApiError from '../exception/apiError';
 import ApiValidationError from '../exception/apiValidationError';
 
 export default class AuthController {
   static async registration(req: Request, res: Response, next: NextFunction) {
     try {
-
       const errors = validationResult(req);
 
       if (!errors.isEmpty()) {
-        throw ApiValidationError.badValidation('Validation error', errors)
+        throw ApiValidationError.badValidation('Validation error', errors);
       }
 
       const { email, password } = req.body;

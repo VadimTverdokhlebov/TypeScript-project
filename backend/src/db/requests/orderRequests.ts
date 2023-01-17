@@ -1,4 +1,4 @@
-import { IOrder } from '../../bisness/entities/modelsInterfaces';
+import { IOrder } from '../../bisness/entities/order';
 import Order from '../models/order';
 
 export function createOrder(dataOrder: IOrder) {
@@ -7,5 +7,5 @@ export function createOrder(dataOrder: IOrder) {
 
 export function getUserOrders(userId: string) {
   return Order.find({ user: userId })
-    .populate('products.product').populate('products.additives.additive');;
+    .populate('products.product').populate('products.additives.additive');
 }

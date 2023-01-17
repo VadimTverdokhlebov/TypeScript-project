@@ -1,10 +1,9 @@
-import { getAdditives, getProducts, getSearchProducts } from '../db/requests/productRequests';
 import { NextFunction, Request, Response } from 'express';
+import { getAdditives, getProducts, getSearchProducts } from '../db/requests/productRequests';
 import ApiError from '../exception/apiError';
-import { ICustomRequest } from '../bisness/entities/interfaces';
+import { ISearchProductsRequest } from '../bisness/entities/product';
 
 export async function getProduct(req: Request, res: Response) {
-
   const [menu, additives] = await Promise.all([getProducts(), getAdditives()]);
   const products = { menu, additives };
 
@@ -13,7 +12,7 @@ export async function getProduct(req: Request, res: Response) {
 
 export async function getResultSearch(req: Request, res: Response, next: NextFunction) {
   try {
-    const { searchValue, category } = (req as unknown as ICustomRequest).query;
+    const { searchValue, category } = (req as unknown as ISearchProductsRequest).query;
     const foundProducts = await getSearchProducts(searchValue, category);
 
     if (foundProducts.length === 0) {
@@ -22,6 +21,6 @@ export async function getResultSearch(req: Request, res: Response, next: NextFun
 
     return res.json(foundProducts);
   } catch (e) {
-    return next(e)
+    return next(e);
   }
 }

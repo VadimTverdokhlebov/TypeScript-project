@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import paginate from 'mongoose-paginate-v2';
-import { IOrder } from '../../bisness/entities/modelsInterfaces';
+import { IOrder } from '../../bisness/entities/order';
 
 const { Schema } = mongoose;
 

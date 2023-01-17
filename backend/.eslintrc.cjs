@@ -3,12 +3,15 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: 'airbnb-base',
+  extends: [
+    'airbnb-base',
+    'airbnb-typescript/base'],
   overrides: [
   ],
   parserOptions: {
     ecmaVersion: 'latest',
-    sourceType: 'module',
+    tsconfigRootDir: __dirname,
+    project: './tsconfig.json',
   },
   rules: {
     'import/extensions': ['error', 'ignorePackages', {

@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { IUser } from '../../bisness/entities/modelsInterfaces';
+import { IUser } from '../../bisness/entities/user';
 
 const { Schema } = mongoose;
 

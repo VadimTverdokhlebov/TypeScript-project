@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { IProduct } from '../../bisness/entities/modelsInterfaces';
+import { IProduct } from '../../bisness/entities/product';
 
 const { Schema } = mongoose;
 
