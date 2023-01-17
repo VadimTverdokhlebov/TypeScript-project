@@ -1,16 +1,15 @@
 import mongoose from 'mongoose';
-import { IOrder } from '../db/models/order';
-import { IProduct } from '../db/models/product';
-import { IAdditive } from '../db/models/additive';
+import { IProductsFromClient } from '../entities/interfaces';
+import { IAdditive, IOrder, IProduct } from '../entities/modelsInterfaces';
 
-export function getIdDataOrder(products: any) {
+export function getIdProductsAndAdditives(products: IProductsFromClient[]) {
     const productsId: string[] = [];
     const additivesId: string[] = [];
 
     for (const product of products) {
         productsId.push(product.id);
         for (const additiveId of product.additives) {
-            additivesId.push(additiveId);
+            additivesId.push(String(additiveId));
         };
     }
 
@@ -18,7 +17,7 @@ export function getIdDataOrder(products: any) {
 }
 
 export function getFilledOrder(
-    products: any,
+    products: IProductsFromClient[],
     userId: string,
     productsOrder: IProduct[],
     additivesOrder: IAdditive[]) {
@@ -53,7 +52,7 @@ export function getFilledOrder(
             order.products[indexProductOrder].sum += Number(currentAdditive.price);
 
             order.products[indexProductOrder].additives.push({
-                additive: new mongoose.Types.ObjectId(additiveId),
+                additive: new mongoose.Types.ObjectId(String(additiveId)),
             });
         }
 

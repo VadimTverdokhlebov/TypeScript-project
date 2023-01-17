@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import config from '../config';
-import ApiError from '../excaptions/apiError';
+import ApiError from '../exception/apiError';
 
 export interface ICustomRequest extends Request {
   user: string | JwtPayload;

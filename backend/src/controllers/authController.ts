@@ -3,8 +3,8 @@ import { generateAccessToken } from '../helpers/jwt';
 import { getUser, createNewUser } from '../db/requests/userRequests';
 import { NextFunction, Request, Response } from 'express';
 import { validationResult } from 'express-validator';
-import ApiError from '../excaptions/apiError';
-import ApiValidationError from '../excaptions/apiValidationError';
+import ApiError from '../exception/apiError';
+import ApiValidationError from '../exception/apiValidationError';
 
 export default class AuthController {
   static async registration(req: Request, res: Response, next: NextFunction) {

@@ -3,25 +3,16 @@ import { NextFunction, Request, Response } from 'express';
 import { getSelectedProducts, getSelectedAdditives } from '../db/requests/productRequests';
 import { createOrder } from '../db/requests/orderRequests';
 import Order from '../db/models/order';
-import { getFilledOrder, getIdDataOrder } from '../services/orderService';
-import ApiError from '../excaptions/apiError';
-
-interface ICustomRequest extends Request {
-  user: {
-    id: string;
-  };
-  query: {
-    limit: any;
-    page: any;
-  };
-}
+import { getFilledOrder, getIdProductsAndAdditives } from '../bisness/services/orderService';
+import ApiError from '../exception/apiError';
+import { IProductsFromClient, ICustomRequest } from '../bisness/entities/interfaces';
 
 export default class OrderController {
   static async addOrder(req: Request, res: Response, next: NextFunction) {
     try {
-      const userId = (req as ICustomRequest).user.id;
-      const { products } = req.body;
-      const [productsId, additivesId] = getIdDataOrder(products);
+      const userId = (req as unknown as ICustomRequest).user.id;
+      const products: IProductsFromClient[]  = req.body;
+      const [productsId, additivesId] = getIdProductsAndAdditives(products);
 
       const [productsOrder, additivesOrder] = await Promise.all([
         getSelectedProducts(productsId),
@@ -42,9 +33,9 @@ export default class OrderController {
 
   static async getOrders(req: Request, res: Response, next: NextFunction) {
     try {
-      const userId = (req as ICustomRequest).user.id;
-      const limit = (req as ICustomRequest).query.limit || 1;
-      const page = (req as ICustomRequest).query.page || 1;
+      const userId = (req as unknown as ICustomRequest).user.id;
+      const limit = Number((req as unknown as ICustomRequest).query.limit || 1);
+      const page = Number((req as unknown as ICustomRequest).query.page || 1);
 
       const query = { user: userId };
 

@@ -1,25 +1,8 @@
 import mongoose from 'mongoose';
 import paginate from 'mongoose-paginate-v2';
+import { IOrder } from '../../bisness/entities/modelsInterfaces';
 
 const { Schema } = mongoose;
-
-export interface IOrderAdditive  {
-  additive: mongoose.Types.ObjectId;
-} 
-
-export interface IOrderProduct  {
-  product: mongoose.Types.ObjectId;
-  sum: number;
-  quantity: number;
-  additives: Array<IOrderAdditive>;
-}
-
-export interface IOrder {
-  user: mongoose.Types.ObjectId;
-  products: Array<IOrderProduct>;
-  status: boolean;
-  sumOrder: number;
-}
 
 interface IOrderDocument extends mongoose.Document, IOrder {}
 

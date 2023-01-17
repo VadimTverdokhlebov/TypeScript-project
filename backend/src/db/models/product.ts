@@ -1,15 +1,8 @@
 import mongoose from 'mongoose';
+import { IProduct } from '../../bisness/entities/modelsInterfaces';
 
 const { Schema } = mongoose;
 
-export interface IProduct extends mongoose.Document {
-  name: string;
-  image: string;
-  description: string;
-  price: number;
-  category: string;
-  market: string;
-}
 const productSchema = new Schema<IProduct>({
   name: {
     type: String,

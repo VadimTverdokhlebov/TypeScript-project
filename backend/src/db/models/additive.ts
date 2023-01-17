@@ -1,14 +1,7 @@
 import mongoose from 'mongoose';
+import { IAdditive } from '../../bisness/entities/modelsInterfaces';
 
 const { Schema } = mongoose;
-
-export interface IAdditive extends mongoose.Document{
-  name: string;
-  image: string;
-  description: string;
-  price: number;
-  category: string;
-}
 
 const additiveSchema = new Schema<IAdditive>({
   name: {

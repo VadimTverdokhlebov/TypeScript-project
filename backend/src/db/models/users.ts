@@ -1,11 +1,7 @@
 import mongoose from 'mongoose';
+import { IUser } from '../../bisness/entities/modelsInterfaces';
 
 const { Schema } = mongoose;
-
-export interface IUser extends mongoose.Document {
-  email: string;
-  password: string;
-}
 
 const userSchema = new Schema<IUser>({
   email: {

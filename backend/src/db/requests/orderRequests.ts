@@ -1,4 +1,5 @@
-import Order, { IOrder } from '../models/order';
+import { IOrder } from '../../bisness/entities/modelsInterfaces';
+import Order from '../models/order';
 
 export function createOrder(dataOrder: IOrder) {
   return Order.create(dataOrder);
