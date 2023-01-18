@@ -1,4 +1,4 @@
-import pubSub from '../PubSub.js';
+import pubSub from '../pubSub/PubSub.js';
 import ProductCard from './productCard.js';
 import { storeDataProduct } from '../store/store.js';
 

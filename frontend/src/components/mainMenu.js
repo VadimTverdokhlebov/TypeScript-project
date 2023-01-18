@@ -1,4 +1,4 @@
-import pubSub from '../PubSub.js';
+import pubSub from '../pubSub/PubSub.js';
 
 export default class MainMenu extends HTMLElement {
 

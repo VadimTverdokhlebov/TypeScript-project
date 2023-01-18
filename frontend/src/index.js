@@ -1,12 +1,12 @@
 import './style/main.css';
 import './index.html';
-import './scripts/components/modalWindow.js';
-import './scripts/components/productBasket.js';
-import './scripts/components/mainMenu.js';
-import { productReceived } from './scripts/store/actionCreators/productReceived.js';
-import ProductsSelectedCategory from './scripts/components/productsSelectedCategory.js';
-import { storeDataProduct } from './scripts/store/store.js';
-import { getDataProduct } from './scripts/api/getDataProduct.js';
+import './components/modalWindow.js';
+import './components/productBasket.js';
+import './components/mainMenu.js';
+import { productReceived } from './store/actionCreators/productReceived.js';
+import ProductsSelectedCategory from './components/productsSelectedCategory.js';
+import { storeDataProduct } from './store/store.js';
+import { getDataProduct } from './api/getDataProduct.js';
 
 main();
 
