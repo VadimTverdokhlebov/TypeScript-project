@@ -18,16 +18,6 @@ export interface IOrder {
   sumOrder: number;
 }
 
-export interface IOrderPaginationRequest extends Request {
-  user: {
-    id: string;
-  };
-  query: {
-    limit: string;
-    page: string;
-  };
-}
-
 interface IAdditiveFromClient {
   additive: mongoose.Types.ObjectId;
 }

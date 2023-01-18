@@ -17,7 +17,7 @@ async function startServer() {
   app.use(cors(corsOptions));
   app.use(express.json());
   app.use(express.static('public'));
-  app.use('/api', indexRouter());
+  indexRouter(app);
   app.use(errorsMiddleware);
 
   const PORT = config.port;

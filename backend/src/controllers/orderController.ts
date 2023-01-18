@@ -5,7 +5,17 @@ import { createOrder } from '../db/requests/orderRequests';
 import Order from '../db/models/order';
 import { getFilledOrder, getIdProductsAndAdditives } from '../bisness/services/orderService';
 import ApiError from '../exception/apiError';
-import { IProductsFromClient, IOrderPaginationRequest } from '../bisness/entities/order';
+import { IProductsFromClient } from '../bisness/entities/order';
+
+export interface IOrderPaginationRequest extends Request {
+  user: {
+    id: string;
+  };
+  query: {
+    limit: string;
+    page: string;
+  };
+}
 
 export default class OrderController {
   static async addOrder(req: Request, res: Response, next: NextFunction) {
